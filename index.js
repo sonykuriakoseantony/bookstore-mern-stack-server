@@ -7,6 +7,9 @@ const cors = require('cors');
 //import router
 const router = require('./routes/router')
 
+//import database
+require('./config/db')
+
 //create express server using express function
 const bookstoreServer = express();
 
@@ -24,7 +27,7 @@ const PORT = 3000
 
 //start server and listen on defined port
 bookstoreServer.listen(PORT, () => {
-    console.log(``);
+    console.log(`Bookstore Server started and listening on PORT:${PORT}, Waiting for client request...`);
 });
 
 //resolve GET request to root route
