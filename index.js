@@ -34,4 +34,9 @@ bookstoreServer.listen(PORT, () => {
 bookstoreServer.get('/', (req, res) => {
     res.status(200).send(`<h1>Bookstore Server started and listening on PORT:${PORT}, Waiting for client request...</h1>`)
 })
+//resolve GET request to root route
+bookstoreServer.post('/', (req, res) => {
+    res.status(200).send(`<h1>Bookstore Server started and listening on PORT:${PORT}, Waiting for client request...</h1>`)
+})
+
 
