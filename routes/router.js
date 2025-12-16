@@ -16,6 +16,9 @@ router.post('/login', userController.loginController);
 router.post('/google-login', userController.googleLoginController);
 
 /**----------------------------Authorised Users only-------------------------**/
+// home books
+router.get('/home/books', bookController.getHomeBookController);
+
 //add books 
 router.post('/user/add/book', jwtMiddleware, multerMiddleware.array('uploadImg', 3), bookController.addBookController)
 
