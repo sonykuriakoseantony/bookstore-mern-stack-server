@@ -46,8 +46,12 @@ exports.getUserAllBooksController = async (req, res) => {
     console.log("Inside getUserAllBooksController");
     const loginUserMail = req.payload;
 
+    const searchKey = req.query.search;
+    console.log(searchKey);
+    
+
     try {
-        const allBooks = await books.find({ sellerMail: { $ne: loginUserMail } });
+        const allBooks = await books.find({ sellerMail:{ $ne:loginUserMail }, title:{ $regex:searchKey, $options:'i' } });
         res.status(200).json(allBooks)
     }
     catch (error) {
