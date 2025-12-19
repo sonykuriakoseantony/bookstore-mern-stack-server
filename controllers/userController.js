@@ -82,7 +82,26 @@ exports.googleLoginController = async (req, res) => {
         res.status(500).json(error)
     }
 }
+
 //User profile edit
+exports.editUserProfileController = async (req, res) => {
+    console.log("Inside editUserProfileController");
+    //get user details from req body
+    const email = req.payload;
+    const { id } = req.params;
+    const { username, password, bio, role, picture } = req.body;
+    const updatePicture = req.file?req.file.filename:picture;
+
+    console.log(id, email, username, password, bio, role, picture, updatePicture );
+
+    try{
+        const updateUser = await users.findByIdAndUpdate({_id : id }, {username, email, password, picture:updatePicture, bio, role }, {new : true});
+        res.status(200).json(updateUser)
+    }
+    catch{
+        res.status(500).json(error)
+    }
+}
 
 //Admin profile edit
 
