@@ -91,3 +91,16 @@ exports.getUserBoughtBooksController = async (req, res) => {
     }
 }
 
+//get a single book details
+exports.viewSingleBookController = async (req, res) => {
+    console.log("Inside viewSingleBookController")
+    const {id} = req.params;
+    try{
+        const userBook = await books.findById({_id : id})
+        res.status(200).json(userBook);
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+        
