@@ -90,8 +90,8 @@ exports.editUserProfileController = async (req, res) => {
     const email = req.payload;
     const { id } = req.params;
     const { username, password, bio, role, picture } = req.body;
-    const updatePicture = req.file?req.file.filename:picture;
 
+    const updatePicture = req.file?req.file.filename:picture;
     console.log(id, email, username, password, bio, role, picture, updatePicture );
 
     try{
@@ -103,7 +103,39 @@ exports.editUserProfileController = async (req, res) => {
     }
 }
 
-//Admin profile edit
+//All users by Admin
+exports.getAllUsersController = async (req, res) => {
+    console.log("Inside getAllUsersController");
+
+    try{
+        const allUsers = await users.find({role:{$ne:'admin'}});
+        res.status(200).json(allUsers)
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+    }
+}
+
+//Admin User profile edit
+exports.editAdminUserProfileController = async (req, res) => {
+    console.log("Inside editUserProfileController");
+    //get user details from req body
+    const email = req.payload;
+    const { id } = req.params;
+    const { username, password, bio, role, picture } = req.body;
+
+    const updatePicture = req.file?req.file.filename:picture;
+    console.log(id, email, username, password, bio, role, picture, updatePicture );
+
+    try{
+        const updateUser = await users.findByIdAndUpdate({_id : id }, {username, email, password, picture:updatePicture, bio, role }, {new : true});
+        res.status(200).json(updateUser)
+    }
+    catch{
+        res.status(500).json(error)
+    }
+}
 
 
 
