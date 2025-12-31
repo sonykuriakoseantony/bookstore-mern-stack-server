@@ -52,5 +52,8 @@ router.get('/users/all', adminMiddleware, userController.getAllUsersController);
 //edit admin user profile
 router.put('/admin/:id/edit', adminMiddleware, multerMiddleware.single('picture'), userController.editAdminUserProfileController)
 
+//get single book details
+router.put('/books/:id/update', adminMiddleware, bookController.updateBookStatusController)
+
 module.exports = router
 
