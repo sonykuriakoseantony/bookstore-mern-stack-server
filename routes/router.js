@@ -42,6 +42,8 @@ router.get('/books/:id/view', jwtMiddleware, bookController.viewSingleBookContro
 //delete single book details
 router.delete('/books/:id', jwtMiddleware, bookController.deleteBookController)
 
+//buy book by user
+router.put('/books/:id/buy', jwtMiddleware, bookController.bookPaymentController)
 
 
 /**----------------------------Admin Users only-------------------------**/
