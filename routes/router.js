@@ -39,6 +39,9 @@ router.put('/user/:id/edit', jwtMiddleware, multerMiddleware.single('picture'), 
 //get single book details
 router.get('/books/:id/view', jwtMiddleware, bookController.viewSingleBookController)
 
+//delete single book details
+router.delete('/books/:id', jwtMiddleware, bookController.deleteBookController)
+
 
 
 /**----------------------------Admin Users only-------------------------**/

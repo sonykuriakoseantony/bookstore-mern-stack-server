@@ -133,5 +133,19 @@ exports.updateBookStatusController = async (req, res) => {
     }
 }
 
+//delete book
+exports.deleteBookController = async (req, res) => {
+    console.log("Inside deleteBookController")
+    //get book's id
+    const {id} = req.params;
+    try{
+        const bookDetails = await books.findByIdAndDelete({_id : id})
+        res.status(200).json(bookDetails);
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
 
         
