@@ -188,8 +188,10 @@ exports.bookPaymentController = async (req, res) => {
             payment_method_types : ['card'],
             line_items,
             mode: 'payment',
-            success_url : 'http://localhost:5173/payment-success',
-            cancel_url : 'http://localhost:5173/payment-fail',
+            // success_url : 'http://localhost:5173/payment-success',
+            // cancel_url : 'http://localhost:5173/payment-fail',
+            success_url : 'https://second-selling-bookstore.vercel.app/payment-success',
+            cancel_url : 'https://second-selling-bookstore.vercel.app/payment-fail',
         });
 
         console.log(session);
